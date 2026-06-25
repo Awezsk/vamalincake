@@ -16,7 +16,7 @@ export default function Footer() {
               }}>
                 Vamilin
               </div>
-              <div style={{ fontSize: 11, letterSpacing: "0.25em", color: "#d94a7a", textTransform: "uppercase", marginTop: 2 }}>
+              <div style={{ fontSize: 11, letterSpacing: "0.25em", color: "var(--color-accent)", textTransform: "uppercase", marginTop: 2 }}>
                 The Cake Bar
               </div>
             </div>
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <p style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
+            <p style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
               Cakes
             </p>
             {["Birthday Cakes", "Wedding Cakes", "Custom Cakes", "Kids Cakes", "Festival Cakes", "Ice Cream Cakes"].map((l) => (
@@ -56,7 +56,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
+            <p style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
               Company
             </p>
             {["About Us", "Our Story", "Contact Us", "Privacy Policy", "Refund Policy"].map((l) => (
@@ -70,13 +70,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <p style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
+            <p style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
               Contact
             </p>
             <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, marginBottom: 14 }}>
               Jaripatka, Nagpur – 440014
             </p>
-            <a href="tel:+919876543210" style={{ display: "block", fontSize: 13, color: "#d94a7a", textDecoration: "none", fontWeight: 600, marginBottom: 8 }}>
+            <a href="tel:+919876543210" style={{ display: "block", fontSize: 13, color: "var(--color-accent)", textDecoration: "none", fontWeight: 600, marginBottom: 8 }}>
               📞 +91 98765 43210
             </a>
             <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" style={{ display: "block", fontSize: 13, color: "#25D366", textDecoration: "none", fontWeight: 600 }}>

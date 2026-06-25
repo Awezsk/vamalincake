@@ -14,7 +14,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" style={{ padding: "80px 20px", background: "#fff" }}>
+    <section id="contact" style={{ padding: "80px 20px", background: "var(--color-surface)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -22,19 +22,19 @@ export default function ContactSection() {
           viewport={{ once: true }}
           style={{ textAlign: "center", marginBottom: 52 }}
         >
-          <span style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Place an Order
           </span>
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(26px, 4vw, 38px)",
             fontWeight: 700,
-            color: "#1a0a05",
+            color: "var(--color-text-heading)",
             marginTop: 8,
           }}>
             Let&apos;s Bake Something Special
           </h2>
-          <div style={{ width: 50, height: 3, background: "#d94a7a", borderRadius: 2, margin: "14px auto 0" }} />
+          <div style={{ width: 50, height: 3, background: "var(--color-accent)", borderRadius: 2, margin: "14px auto 0" }} />
         </motion.div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
@@ -57,15 +57,15 @@ export default function ContactSection() {
                   gap: 16,
                   padding: "20px",
                   borderRadius: 14,
-                  border: "1.5px solid #f0d9ce",
-                  background: "#fffbf9",
+                  border: "1.5px solid var(--color-border)",
+                  background: "var(--color-bg)",
                 }}
               >
                 <div style={{
                   width: 44,
                   height: 44,
                   borderRadius: 12,
-                  background: "#fdeef4",
+                  background: "var(--color-accent-light)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -75,10 +75,10 @@ export default function ContactSection() {
                   {item.icon}
                 </div>
                 <div>
-                  <p style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4 }}>
+                  <p style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4 }}>
                     {item.title}
                   </p>
-                  <p style={{ fontSize: 14, color: "#5a3b2e", lineHeight: 1.6, whiteSpace: "pre-line" }}>
+                  <p style={{ fontSize: 14, color: "var(--color-text-body)", lineHeight: 1.6, whiteSpace: "pre-line" }}>
                     {item.content}
                   </p>
                 </div>
@@ -86,7 +86,7 @@ export default function ContactSection() {
             ))}
 
             {/* Map */}
-            <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #f0d9ce" }}>
+            <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid var(--color-border)" }}>
               <iframe
                 src="https://maps.google.com/maps?q=21.1835453,79.0941604&z=16&output=embed"
                 width="100%"
@@ -111,11 +111,11 @@ export default function ContactSection() {
             <div style={{
               padding: "20px",
               borderRadius: 14,
-              background: "#fdeef4",
-              border: "1.5px solid #f9c2d8",
+              background: "var(--color-accent-light)",
+              border: "1.5px solid var(--color-accent-very-light)",
               marginBottom: 4,
             }}>
-              <p style={{ fontSize: 13, color: "#d94a7a", fontWeight: 600 }}>
+              <p style={{ fontSize: 13, color: "var(--color-accent)", fontWeight: 600 }}>
                 📋 Fill this form to place a custom order, or WhatsApp us directly for a quicker response!
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function ContactSection() {
               { label: "Delivery Date", key: "date", placeholder: "", type: "date" },
             ].map((field) => (
               <div key={field.key}>
-                <label style={{ fontSize: 12, fontWeight: 600, color: "#5a3b2e", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                <label style={{ fontSize: 12, fontWeight: 600, color: "var(--color-text-body)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
                   {field.label}
                 </label>
                 <input
@@ -142,21 +142,21 @@ export default function ContactSection() {
                     marginTop: 6,
                     padding: "12px 14px",
                     borderRadius: 10,
-                    border: "1.5px solid #f0d9ce",
-                    background: "#fffbf9",
+                    border: "1.5px solid var(--color-border)",
+                    background: "var(--color-bg)",
                     fontSize: 14,
-                    color: "#1a0a05",
+                    color: "var(--color-text-heading)",
                     outline: "none",
                     boxSizing: "border-box",
                   }}
-                  onFocus={(e) => (e.target.style.borderColor = "#d94a7a")}
-                  onBlur={(e) => (e.target.style.borderColor = "#f0d9ce")}
+                  onFocus={(e) => (e.target.style.borderColor = "var(--color-accent)")}
+                  onBlur={(e) => (e.target.style.borderColor = "var(--color-border)")}
                 />
               </div>
             ))}
 
             <div>
-              <label style={{ fontSize: 12, fontWeight: 600, color: "#5a3b2e", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              <label style={{ fontSize: 12, fontWeight: 600, color: "var(--color-text-body)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
                 Special Instructions
               </label>
               <textarea
@@ -170,17 +170,17 @@ export default function ContactSection() {
                   marginTop: 6,
                   padding: "12px 14px",
                   borderRadius: 10,
-                  border: "1.5px solid #f0d9ce",
-                  background: "#fffbf9",
+                  border: "1.5px solid var(--color-border)",
+                  background: "var(--color-bg)",
                   fontSize: 14,
-                  color: "#1a0a05",
+                  color: "var(--color-text-heading)",
                   outline: "none",
                   resize: "none",
                   boxSizing: "border-box",
                   fontFamily: "inherit",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "#d94a7a")}
-                onBlur={(e) => (e.target.style.borderColor = "#f0d9ce")}
+                onFocus={(e) => (e.target.style.borderColor = "var(--color-accent)")}
+                onBlur={(e) => (e.target.style.borderColor = "var(--color-border)")}
               />
             </div>
 
@@ -191,7 +191,7 @@ export default function ContactSection() {
               style={{
                 padding: "15px",
                 borderRadius: 10,
-                background: submitted ? "#25a56a" : "#d94a7a",
+                background: submitted ? "#25a56a" : "var(--color-accent)",
                 color: "#fff",
                 border: "none",
                 fontSize: 15,

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function OrderBanner() {
   return (
-    <section style={{ padding: "0 20px", background: "#fff8f5" }}>
+    <section style={{ padding: "0 20px", background: "var(--color-bg)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -13,7 +13,7 @@ export default function OrderBanner() {
           transition={{ duration: 0.6 }}
           style={{
             borderRadius: 24,
-            background: "linear-gradient(135deg, #d94a7a 0%, #b83565 50%, #8b1a45 100%)",
+            background: "linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 50%, var(--color-accent-dark) 100%)",
             padding: "60px 40px",
             textAlign: "center",
             position: "relative",
@@ -48,7 +48,7 @@ export default function OrderBanner() {
               style={{
                 padding: "14px 32px",
                 background: "#fff",
-                color: "#d94a7a",
+                color: "var(--color-accent)",
                 borderRadius: 10,
                 fontWeight: 700,
                 fontSize: 15,

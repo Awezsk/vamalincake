@@ -13,17 +13,63 @@ export default async function ProductsPage() {
   return (
     <>
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 py-10">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Our Cakes</h1>
-        <p className="text-gray-500 mb-8">
-          All cakes are freshly baked and customizable
-        </p>
-        {!cakes || cakes.length === 0 ? (
-          <p className="text-center text-gray-400 py-20">
-            No cakes available right now. Check back soon!
+      <main style={{ marginLeft: 'clamp(1rem,3vw,3rem)', marginRight: 'clamp(1rem,3vw,3rem)', padding: '48px 0 80px', position: 'relative' }}>
+        {/* Decorative blobs */}
+        <div style={{
+          position: 'fixed', top: '15%', right: -120,
+          width: 350, height: 350, borderRadius: '50%',
+          background: 'rgba(var(--color-accent-rgb), 0.04)', pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'fixed', bottom: '5%', left: -80,
+          width: 250, height: 250, borderRadius: '50%',
+          background: 'rgba(var(--color-accent-rgb), 0.03)', pointerEvents: 'none',
+        }} />
+
+        {/* Header */}
+        <div style={{ marginBottom: 40 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 6 }}>
+            <div style={{
+              width: 6, height: 28, borderRadius: 3,
+              background: 'linear-gradient(180deg, var(--color-accent), var(--color-accent-dark))',
+            }} />
+            <h1 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 32, fontWeight: 700, color: 'var(--color-text-heading)',
+            }}>
+              Our Cakes
+            </h1>
+          </div>
+          <p style={{ color: 'var(--color-text-muted)', fontSize: 14, marginLeft: 20, maxWidth: 480 }}>
+            All cakes are freshly baked and customizable with your choice of size, flavour, and toppings
           </p>
+        </div>
+
+        {!cakes || cakes.length === 0 ? (
+          <div style={{
+            textAlign: 'center', padding: '100px 20px',
+            background: 'var(--color-surface)', borderRadius: 24,
+            border: '2px dashed var(--color-border)',
+            maxWidth: 480, margin: '40px auto',
+          }}>
+            <div style={{ fontSize: 56, marginBottom: 16 }}>🍰</div>
+            <p style={{
+              fontSize: 18, fontWeight: 700, color: 'var(--color-text-heading)',
+              fontFamily: "'Playfair Display', serif",
+            }}>
+              No cakes available
+            </p>
+            <p style={{ color: 'var(--color-text-muted)', fontSize: 14, marginTop: 8 }}>
+              Check back soon for freshly listed cakes!
+            </p>
+          </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: 24,
+            alignItems: 'stretch',
+          }}>
             {cakes.map((cake: Cake) => (
               <CakeCard key={cake.id} cake={cake} />
             ))}

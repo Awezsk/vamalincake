@@ -11,7 +11,7 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section id="about" style={{ padding: "80px 20px", background: "#fff8f5" }}>
+    <section id="about" style={{ padding: "80px 20px", background: "var(--color-bg)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
           {/* Visual */}
@@ -25,12 +25,12 @@ export default function AboutSection() {
             <div style={{
               aspectRatio: "4/3",
               borderRadius: 24,
-              background: "linear-gradient(135deg, #fdeef4, #ffd6e8, #ffecd6)",
+              background: "linear-gradient(135deg, var(--color-accent-light), var(--color-accent-very-light), var(--color-accent-light))",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontSize: 100,
-              boxShadow: "0 20px 60px rgba(217,74,122,0.15)",
+              boxShadow: "0 20px 60px rgba(var(--color-accent-rgb), 0.15)",
             }}>
               🎂
             </div>
@@ -39,14 +39,14 @@ export default function AboutSection() {
               position: "absolute",
               bottom: -30,
               right: -20,
-              background: "#fff",
+              background: "var(--color-surface)",
               borderRadius: 16,
               padding: "20px 24px",
               boxShadow: "0 12px 40px rgba(0,0,0,0.1)",
-              border: "1px solid #f0d9ce",
+              border: "1px solid var(--color-border)",
             }}>
-              <p style={{ fontSize: 32, fontWeight: 800, color: "#d94a7a", lineHeight: 1 }}>5000+</p>
-              <p style={{ fontSize: 12, color: "#9c7060", marginTop: 4 }}>Happy Customers</p>
+              <p style={{ fontSize: 32, fontWeight: 800, color: "var(--color-accent)", lineHeight: 1 }}>5000+</p>
+              <p style={{ fontSize: 12, color: "var(--color-text-muted)", marginTop: 4 }}>Happy Customers</p>
             </div>
           </motion.div>
 
@@ -57,24 +57,24 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <span style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
               Our Story
             </span>
             <h2 style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(26px, 3.5vw, 38px)",
               fontWeight: 700,
-              color: "#1a0a05",
+              color: "var(--color-text-heading)",
               marginTop: 10,
               marginBottom: 20,
               lineHeight: 1.3,
             }}>
               Baked with Love in Nagpur
             </h2>
-            <p style={{ fontSize: 15, color: "#5a3b2e", lineHeight: 1.8, marginBottom: 16 }}>
+            <p style={{ fontSize: 15, color: "var(--color-text-body)", lineHeight: 1.8, marginBottom: 16 }}>
               Founded in Jaripatka, Nagpur, Vamilin — The Cake Bar was born from a simple belief: every celebration deserves a cake that tastes as beautiful as it looks.
             </p>
-            <p style={{ fontSize: 15, color: "#9c7060", lineHeight: 1.8, marginBottom: 32 }}>
+            <p style={{ fontSize: 15, color: "var(--color-text-muted)", lineHeight: 1.8, marginBottom: 32 }}>
               We use only the freshest ingredients — no preservatives, no shortcuts. Every cake is handcrafted to order, whether it&apos;s a simple birthday cake or an elaborate wedding centrepiece.
             </p>
 
@@ -86,12 +86,12 @@ export default function AboutSection() {
                   style={{
                     padding: "18px 20px",
                     borderRadius: 12,
-                    background: "#fff",
-                    border: "1.5px solid #f0d9ce",
+                    background: "var(--color-surface)",
+                    border: "1.5px solid var(--color-border)",
                   }}
                 >
-                  <p style={{ fontSize: 28, fontWeight: 800, color: "#d94a7a", lineHeight: 1 }}>{s.value}</p>
-                  <p style={{ fontSize: 12, color: "#9c7060", marginTop: 4 }}>{s.label}</p>
+                  <p style={{ fontSize: 28, fontWeight: 800, color: "var(--color-accent)", lineHeight: 1 }}>{s.value}</p>
+                  <p style={{ fontSize: 12, color: "var(--color-text-muted)", marginTop: 4 }}>{s.label}</p>
                 </div>
               ))}
             </div>

@@ -20,7 +20,27 @@ export default function DeleteCakeButton({ id }: { id: string }) {
   return (
     <button
       onClick={handleDelete}
-      className="flex-1 text-center border border-red-100 text-red-400 rounded-lg py-1.5 text-sm hover:bg-red-50 transition"
+      style={{
+        flex: 1, display: 'flex', alignItems: 'center',
+        justifyContent: 'center',
+        border: '1.5px solid #ffcdd2',
+        borderRadius: 12,
+        padding: '10px 0',
+        fontSize: 13,
+        fontWeight: 600,
+        color: '#e57373',
+        background: '#fff',
+        cursor: 'pointer',
+        transition: 'all 0.2s',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = '#fff5f5'
+        e.currentTarget.style.borderColor = '#ef9a9a'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = '#fff'
+        e.currentTarget.style.borderColor = '#ffcdd2'
+      }}
     >
       Delete
     </button>

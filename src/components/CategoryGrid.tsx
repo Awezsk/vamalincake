@@ -79,19 +79,19 @@ export default function CategoryGrid() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: 48 }}
         >
-          <span style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Browse by Occasion
           </span>
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(26px, 4vw, 38px)",
             fontWeight: 700,
-            color: "#1a0a05",
+            color: "var(--color-text-heading)",
             marginTop: 8,
           }}>
             What Are You Celebrating?
           </h2>
-          <div style={{ width: 50, height: 3, background: "#d94a7a", borderRadius: 2, margin: "14px auto 0" }} />
+          <div style={{ width: 50, height: 3, background: "var(--color-accent)", borderRadius: 2, margin: "14px auto 0" }} />
         </motion.div>
 
         {/* Loading skeleton */}
@@ -154,7 +154,7 @@ export default function CategoryGrid() {
                   <span style={{
                     fontSize: 12,
                     fontWeight: 600,
-                    color: "#1a0a05",
+                    color: "var(--color-text-heading)",
                     textAlign: "center",
                     lineHeight: 1.3,
                   }}>

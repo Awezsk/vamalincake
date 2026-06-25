@@ -7,7 +7,7 @@ const slides = [
     tag: "NEW LAUNCH",
     headline: "Celebrate Every\nMoment Sweetly",
     sub: "Fresh, handcrafted cakes delivered to your door — same day, across Nagpur.",
-    bg: "linear-gradient(135deg, #fdeef4 0%, #ffd6e8 40%, #ffecd6 100%)",
+    bg: "linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent-very-light) 40%, var(--color-accent-light) 100%)",
     emoji: "🎂",
     cta: "Order Now",
     ctaHref: "#bestsellers",
@@ -40,7 +40,7 @@ export default function Hero() {
       <div style={{
         position: "absolute", top: -100, right: -100,
         width: 500, height: 500, borderRadius: "50%",
-        background: "rgba(217,74,122,0.07)", pointerEvents: "none",
+        background: "rgba(var(--color-accent-rgb), 0.07)", pointerEvents: "none",
       }} />
       <div style={{
         position: "absolute", bottom: -80, left: -80,
@@ -57,7 +57,7 @@ export default function Hero() {
         >
           <span style={{
             display: "inline-block",
-            background: "#d94a7a",
+            background: "var(--color-accent)",
             color: "#fff",
             fontSize: 11,
             fontWeight: 700,
@@ -73,7 +73,7 @@ export default function Hero() {
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(36px, 5vw, 60px)",
             fontWeight: 700,
-            color: "#1a0a05",
+            color: "var(--color-text-heading)",
             lineHeight: 1.2,
             marginBottom: 20,
             whiteSpace: "pre-line",
@@ -81,7 +81,7 @@ export default function Hero() {
             {"Celebrate Every\nMoment Sweetly"}
           </h1>
 
-          <p style={{ fontSize: 16, color: "#5a3b2e", lineHeight: 1.7, marginBottom: 32, maxWidth: 420 }}>
+          <p style={{ fontSize: 16, color: "var(--color-text-body)", lineHeight: 1.7, marginBottom: 32, maxWidth: 420 }}>
             Fresh, handcrafted cakes delivered to your door — same day, across Nagpur. Eggless options available.
           </p>
 
@@ -89,12 +89,12 @@ export default function Hero() {
           <div style={{
             display: "inline-block",
             background: "#fff",
-            border: "1.5px dashed #d94a7a",
+            border: "1.5px dashed var(--color-accent)",
             borderRadius: 10,
             padding: "10px 18px",
             marginBottom: 32,
           }}>
-            <span style={{ fontSize: 13, color: "#d94a7a", fontWeight: 700 }}>
+            <span style={{ fontSize: 13, color: "var(--color-accent)", fontWeight: 700 }}>
               🎉 20% OFF on orders ₹600+ &nbsp;|&nbsp; Use code: <strong>CAKE20</strong>
             </span>
           </div>
@@ -106,13 +106,13 @@ export default function Hero() {
               whileTap={{ scale: 0.96 }}
               style={{
                 padding: "14px 28px",
-                background: "#d94a7a",
+                background: "var(--color-accent)",
                 color: "#fff",
                 borderRadius: 10,
                 fontWeight: 700,
                 fontSize: 15,
                 textDecoration: "none",
-                boxShadow: "0 4px 20px rgba(217,74,122,0.3)",
+                boxShadow: "0 4px 20px rgba(var(--color-accent-rgb), 0.3)",
               }}
             >
               Order Now 🎂
@@ -124,8 +124,8 @@ export default function Hero() {
               style={{
                 padding: "14px 28px",
                 background: "#fff",
-                color: "#d94a7a",
-                border: "2px solid #d94a7a",
+                color: "var(--color-accent)",
+                border: "2px solid var(--color-accent)",
                 borderRadius: 10,
                 fontWeight: 700,
                 fontSize: 15,
@@ -145,7 +145,7 @@ export default function Hero() {
             ].map((b) => (
               <div key={b.label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ fontSize: 18 }}>{b.icon}</span>
-                <span style={{ fontSize: 12, fontWeight: 600, color: "#5a3b2e" }}>{b.label}</span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--color-text-body)" }}>{b.label}</span>
               </div>
             ))}
           </div>
@@ -163,11 +163,11 @@ export default function Hero() {
             width: 340,
             height: 340,
             borderRadius: "50%",
-            background: "linear-gradient(145deg, #ff9eb5, #ffcfe4, #ffa96e)",
+            background: "linear-gradient(145deg, var(--color-accent), var(--color-accent-very-light), var(--color-accent-light))",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 30px 80px rgba(217,74,122,0.2), 0 10px 30px rgba(0,0,0,0.08)",
+            boxShadow: "0 30px 80px rgba(var(--color-accent-rgb), 0.2), 0 10px 30px rgba(0,0,0,0.08)",
             position: "relative",
           }}>
             <span style={{ fontSize: 120 }}>🎂</span>
@@ -185,7 +185,7 @@ export default function Hero() {
               boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
               fontSize: 12,
               fontWeight: 700,
-              color: "#1a0a05",
+              color: "var(--color-text-heading)",
             }}
           >
             🚀 30-min Delivery
@@ -196,10 +196,10 @@ export default function Hero() {
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             style={{
               position: "absolute", bottom: 30, left: -20,
-              background: "#d94a7a",
+              background: "var(--color-accent)",
               borderRadius: 12,
               padding: "10px 14px",
-              boxShadow: "0 8px 24px rgba(217,74,122,0.3)",
+              boxShadow: "0 8px 24px rgba(var(--color-accent-rgb), 0.3)",
               fontSize: 12,
               fontWeight: 700,
               color: "#fff",

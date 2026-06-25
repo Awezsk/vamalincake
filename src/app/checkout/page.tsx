@@ -82,7 +82,7 @@ export default function CheckoutPage() {
   return (
     <>
       <Navbar />
-      <main className="max-w-lg mx-auto px-4 py-10">
+      <main className="ml-[clamp(1rem,3vw,3rem)] mr-[clamp(1rem,3vw,3rem)] py-10">
 
         {/* STEP 1 — Customer details */}
         {step === 'details' && (
@@ -146,7 +146,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Mobile: direct UPI deep link */}
-            
+            <a
               href={upiLink}
               className="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-4 rounded-xl text-lg font-semibold"
             >

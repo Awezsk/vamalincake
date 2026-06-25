@@ -29,7 +29,7 @@ export default function CartPage() {
   return (
     <>
       <Navbar />
-      <main className="max-w-3xl mx-auto px-4 py-10">
+      <main className="ml-[clamp(1rem,3vw,3rem)] mr-[clamp(1rem,3vw,3rem)] py-10">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">Your Cart</h1>
 
         <div className="space-y-4 mb-8">

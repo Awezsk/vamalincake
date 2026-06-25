@@ -13,7 +13,7 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section style={{ padding: "80px 20px", background: "#fff" }}>
+    <section style={{ padding: "80px 20px", background: "var(--color-surface)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -22,19 +22,19 @@ export default function WhyUs() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: 52 }}
         >
-          <span style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Why Choose Us
           </span>
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(26px, 4vw, 38px)",
             fontWeight: 700,
-            color: "#1a0a05",
+            color: "var(--color-text-heading)",
             marginTop: 8,
           }}>
             The Vamilin Difference
           </h2>
-          <div style={{ width: 50, height: 3, background: "#d94a7a", borderRadius: 2, margin: "14px auto 0" }} />
+          <div style={{ width: 50, height: 3, background: "var(--color-accent)", borderRadius: 2, margin: "14px auto 0" }} />
         </motion.div>
 
         <motion.div
@@ -59,8 +59,8 @@ export default function WhyUs() {
               style={{
                 padding: "28px 24px",
                 borderRadius: 16,
-                border: "1.5px solid #f0d9ce",
-                background: "#fffbf9",
+                border: "1.5px solid var(--color-border)",
+                background: "var(--color-bg)",
                 transition: "box-shadow 0.2s",
               }}
             >
@@ -68,7 +68,7 @@ export default function WhyUs() {
                 width: 52,
                 height: 52,
                 borderRadius: 14,
-                background: "#fdeef4",
+                background: "var(--color-accent-light)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -77,8 +77,8 @@ export default function WhyUs() {
               }}>
                 {r.icon}
               </div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#1a0a05", marginBottom: 8 }}>{r.title}</h3>
-              <p style={{ fontSize: 14, color: "#9c7060", lineHeight: 1.6 }}>{r.desc}</p>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--color-text-heading)", marginBottom: 8 }}>{r.title}</h3>
+              <p style={{ fontSize: 14, color: "var(--color-text-muted)", lineHeight: 1.6 }}>{r.desc}</p>
             </motion.div>
           ))}
         </motion.div>

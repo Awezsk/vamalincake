@@ -69,7 +69,7 @@ export default function BestSellers() {
   };
 
   return (
-    <section id="bestsellers" style={{ padding: "80px 20px", background: "#fff8f5" }}>
+    <section id="bestsellers" style={{ padding: "80px 20px", background: "var(--color-bg)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
         {/* Header */}
@@ -80,20 +80,20 @@ export default function BestSellers() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: 40 }}
         >
-          <span style={{ fontSize: 12, fontWeight: 700, color: "#d94a7a", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-accent)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Most Loved
           </span>
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(26px, 4vw, 38px)",
             fontWeight: 700,
-            color: "#1a0a05",
+            color: "var(--color-text-heading)",
             marginTop: 8,
           }}>
             Our Best Sellers
           </h2>
-          <div style={{ width: 50, height: 3, background: "#d94a7a", borderRadius: 2, margin: "14px auto 20px" }} />
-          <p style={{ fontSize: 14, color: "#9c7060", maxWidth: 480, margin: "0 auto" }}>
+          <div style={{ width: 50, height: 3, background: "var(--color-accent)", borderRadius: 2, margin: "14px auto 20px" }} />
+          <p style={{ fontSize: 14, color: "var(--color-text-muted)", maxWidth: 480, margin: "0 auto" }}>
             Handpicked favourites from our kitchen — fresh, eggless, and made to order
           </p>
         </motion.div>
@@ -108,9 +108,9 @@ export default function BestSellers() {
                 style={{
                   padding: "8px 20px",
                   borderRadius: 30,
-                  border: activeFilter === f ? "none" : "1.5px solid #f0d9ce",
-                  background: activeFilter === f ? "#d94a7a" : "#fff",
-                  color: activeFilter === f ? "#fff" : "#5a3b2e",
+                  border: activeFilter === f ? "none" : "1.5px solid var(--color-border)",
+                  background: activeFilter === f ? "var(--color-accent)" : "var(--color-surface)",
+                  color: activeFilter === f ? "#fff" : "var(--color-text-body)",
                   fontSize: 13,
                   fontWeight: 600,
                   cursor: "pointer",
@@ -127,7 +127,7 @@ export default function BestSellers() {
         {loading && (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
             <div style={{ fontSize: 40, marginBottom: 16 }}>🎂</div>
-            <p style={{ color: "#9c7060", fontSize: 14 }}>Loading our cakes...</p>
+            <p style={{ color: "var(--color-text-muted)", fontSize: 14 }}>Loading our cakes...</p>
           </div>
         )}
 
@@ -135,10 +135,10 @@ export default function BestSellers() {
         {!loading && cakes.length === 0 && (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>🍰</div>
-            <p style={{ color: "#9c7060", fontSize: 16, fontWeight: 600 }}>
+            <p style={{ color: "var(--color-text-muted)", fontSize: 16, fontWeight: 600 }}>
               Our menu is being prepared!
             </p>
-            <p style={{ color: "#b0907a", fontSize: 13, marginTop: 8 }}>
+            <p style={{ color: "var(--color-text-muted)", fontSize: 13, marginTop: 8 }}>
               Check back soon for freshly listed cakes.
             </p>
           </div>
@@ -165,10 +165,10 @@ export default function BestSellers() {
                   transition={{ duration: 0.3 }}
                   whileHover={{ y: -6 }}
                   style={{
-                    background: "#fff",
+                    background: "var(--color-surface)",
                     borderRadius: 16,
                     overflow: "hidden",
-                    border: "1px solid #f0d9ce",
+                    border: "1px solid var(--color-border)",
                     boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
                   }}
                 >
@@ -178,7 +178,7 @@ export default function BestSellers() {
                     style={{
                       position: "relative",
                       aspectRatio: "4/3",
-                      background: "linear-gradient(135deg, #fdeef4, #ffd6e8, #ffecd6)",
+                      background: "linear-gradient(135deg, var(--color-accent-light), var(--color-accent-very-light), var(--color-accent-light))",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -205,7 +205,7 @@ export default function BestSellers() {
                         position: "absolute",
                         top: 12,
                         left: 12,
-                        background: "#d94a7a",
+                        background: "var(--color-accent)",
                         color: "#fff",
                         fontSize: 10,
                         fontWeight: 700,
@@ -228,7 +228,7 @@ export default function BestSellers() {
                         fontFamily: "'Playfair Display', serif",
                         fontSize: 17,
                         fontWeight: 700,
-                        color: "#1a0a05",
+                        color: "var(--color-text-heading)",
                         marginTop: 6,
                         marginBottom: 4,
                         cursor: "pointer",
@@ -236,13 +236,13 @@ export default function BestSellers() {
                     >
                       {cake.name}
                     </h3>
-                    <p style={{ fontSize: 12, color: "#9c7060", lineHeight: 1.5, marginBottom: 12 }}>
+                    <p style={{ fontSize: 12, color: "var(--color-text-muted)", lineHeight: 1.5, marginBottom: 12 }}>
                       {cake.description || "Freshly baked and made to order."}
                     </p>
 
                     {/* Price + Add to cart */}
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                      <span style={{ fontSize: 20, fontWeight: 700, color: "#d94a7a" }}>
+                      <span style={{ fontSize: 20, fontWeight: 700, color: "var(--color-accent)" }}>
                         ₹{cake.price}
                       </span>
                       <motion.button
@@ -252,7 +252,7 @@ export default function BestSellers() {
                         style={{
                           padding: "9px 16px",
                           borderRadius: 8,
-                          background: isInCart(cake.id) ? "#25a56a" : "#d94a7a",
+                          background: isInCart(cake.id) ? "#25a56a" : "var(--color-accent)",
                           color: "#fff",
                           border: "none",
                           fontSize: 12,
@@ -282,9 +282,9 @@ export default function BestSellers() {
                 display: "inline-block",
                 padding: "14px 36px",
                 borderRadius: 10,
-                background: "#fff",
-                border: "2px solid #d94a7a",
-                color: "#d94a7a",
+                background: "var(--color-surface)",
+                border: "2px solid var(--color-accent)",
+                color: "var(--color-accent)",
                 fontSize: 14,
                 fontWeight: 700,
                 textDecoration: "none",

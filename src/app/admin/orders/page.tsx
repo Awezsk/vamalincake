@@ -26,10 +26,9 @@ export default function AdminOrdersPage() {
   const [search, setSearch] = useState('')
 
   const fetchOrders = async () => {
-    const { data } = await supabase
-      .from('orders')
-      .select('*')
-      .order('created_at', { ascending: false })
+    // Use the server-side API route so service role key is used (bypasses RLS)
+    const res = await fetch('/api/admin/orders')
+    const data = await res.json()
     setOrders(data || [])
     setLoading(false)
   }
@@ -37,15 +36,31 @@ export default function AdminOrdersPage() {
   useEffect(() => { fetchOrders() }, [])
 
   const updatePayment = async (id: string, status: string) => {
-    await supabase.from('orders').update({ payment_status: status }).eq('id', id)
-    toast.success(`Payment ${status}`)
-    fetchOrders()
+    const res = await fetch('/api/admin/orders', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, payment_status: status }),
+    })
+    if (res.ok) {
+      toast.success(`Payment ${status}`)
+      fetchOrders()
+    } else {
+      toast.error('Update failed')
+    }
   }
 
   const updateOrderStatus = async (id: string, status: string) => {
-    await supabase.from('orders').update({ order_status: status }).eq('id', id)
-    toast.success(`Order → ${status}`)
-    fetchOrders()
+    const res = await fetch('/api/admin/orders', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, order_status: status }),
+    })
+    if (res.ok) {
+      toast.success(`Order → ${status}`)
+      fetchOrders()
+    } else {
+      toast.error('Update failed')
+    }
   }
 
   const filtered = orders.filter((o) =>
@@ -108,16 +123,6 @@ export default function AdminOrdersPage() {
           background: '#fff', borderRadius: 24,
           border: '2px dashed var(--color-border)',
         }}>
-          <div style={{
-            width: 72, height: 72, borderRadius: 24,
-            background: 'var(--color-tag-bg)', display: 'flex',
-            alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 16px',
-          }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-          </div>
           <p style={{
             fontSize: 18, fontWeight: 700, color: '#1a0a05',
             fontFamily: "'Playfair Display', serif",
@@ -138,59 +143,41 @@ export default function AdminOrdersPage() {
             const orderSt = orderConfig[order.order_status] || { bg: '#f5f5f5', color: '#666' }
 
             return (
-                <div
-                  key={order.id}
-                  className="rounded-2xl transition-all duration-300 hover:-translate-y-0.5"
-                  style={{
-                    background: '#fff', border: '1px solid var(--color-border)',
-                    padding: '24px', position: 'relative', overflow: 'hidden',
-                    boxShadow: '0 0 0 rgba(var(--color-accent-rgb), 0)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 8px 28px rgba(var(--color-accent-rgb), 0.1)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 0 rgba(var(--color-accent-rgb), 0)'
-                  }}
-                >
-                  {/* Decorative accent */}
-                  <div style={{
-                    position: 'absolute', top: 0, left: 0,
-                    width: 4, height: '100%',
-                    background: 'linear-gradient(180deg, var(--color-accent), var(--color-accent-dark))',
-                    borderTopLeftRadius: 16, borderBottomLeftRadius: 16,
-                  }} />
-                {/* Top row: ref + price + statuses */}
+              <div
+                key={order.id}
+                className="rounded-2xl transition-all duration-300 hover:-translate-y-0.5"
+                style={{
+                  background: '#fff', border: '1px solid var(--color-border)',
+                  padding: '24px', position: 'relative', overflow: 'hidden',
+                }}
+              >
+                {/* Decorative accent */}
+                <div style={{
+                  position: 'absolute', top: 0, left: 0,
+                  width: 4, height: '100%',
+                  background: 'linear-gradient(180deg, var(--color-accent), var(--color-accent-dark))',
+                  borderTopLeftRadius: 16, borderBottomLeftRadius: 16,
+                }} />
+
+                {/* Top row */}
                 <div style={{
                   display: 'flex', flexWrap: 'wrap',
                   alignItems: 'flex-start', justifyContent: 'space-between',
                   gap: 12, marginBottom: 16,
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{
-                      width: 40, height: 40, borderRadius: 12,
-                      background: 'var(--color-accent-light)', display: 'flex',
-                      alignItems: 'center', justifyContent: 'center',
-                      flexShrink: 0,
+                  <div>
+                    <p style={{
+                      fontFamily: "'Playfair Display', serif",
+                      fontSize: 17, fontWeight: 700, color: '#1a0a05',
                     }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: 17, fontWeight: 700, color: '#1a0a05',
-                      }}>
-                        {order.order_ref}
-                      </p>
-                      <p style={{ fontSize: 12, color: 'var(--color-text-muted)', marginTop: 1 }}>
-                        {new Date(order.created_at).toLocaleDateString('en-IN', {
-                          day: 'numeric', month: 'short', year: 'numeric',
-                          hour: '2-digit', minute: '2-digit',
-                        })}
-                      </p>
-                    </div>
+                      {order.order_ref}
+                    </p>
+                    <p style={{ fontSize: 12, color: 'var(--color-text-muted)', marginTop: 1 }}>
+                      {new Date(order.created_at).toLocaleDateString('en-IN', {
+                        day: 'numeric', month: 'short', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit',
+                      })}
+                    </p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span style={{
@@ -208,30 +195,22 @@ export default function AdminOrdersPage() {
                   </div>
                 </div>
 
-                {/* Detail grid — 2-col consistent layout */}
+                {/* Detail grid */}
                 <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '8px 24px',
-                  fontSize: 13, color: 'var(--color-text-body)',
+                  display: 'grid', gridTemplateColumns: '1fr 1fr',
+                  gap: '8px 24px', fontSize: 13, color: 'var(--color-text-body)',
                   padding: '16px 18px', background: 'var(--color-bg)',
                   borderRadius: 14, marginBottom: 16,
                 }}>
-                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Customer</span><p style={{ marginTop: 2 }}>{order.customer_name}</p></div>
-                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Phone</span><p style={{ marginTop: 2 }}>{order.customer_phone}</p></div>
-                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Cake</span><p style={{ marginTop: 2 }}>{order.cake_name}</p></div>
-                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Address</span><p style={{ marginTop: 2 }}>{order.customer_address}</p></div>
+                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>Customer</span><p style={{ marginTop: 2 }}>{order.customer_name}</p></div>
+                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>Phone</span><p style={{ marginTop: 2 }}>{order.customer_phone}</p></div>
+                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>Cake</span><p style={{ marginTop: 2 }}>{order.cake_name}</p></div>
+                  <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>Address</span><p style={{ marginTop: 2 }}>{order.customer_address}</p></div>
                   {order.delivery_date && (
-                    <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Delivery</span><p style={{ marginTop: 2 }}>{order.delivery_date}</p></div>
+                    <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>Delivery</span><p style={{ marginTop: 2 }}>{order.delivery_date}</p></div>
                   )}
                   {order.upi_ref && (
-                    <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>UPI Ref</span><p style={{ marginTop: 2 }}>{order.upi_ref}</p></div>
-                  )}
-                  {order.customizations && Object.keys(order.customizations).length > 0 && (
-                    <div style={{ gridColumn: '1 / -1' }}>
-                      <span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Customizations</span>
-                      <p style={{ marginTop: 2 }}>{Object.entries(order.customizations).map(([k, v]) => `${k}: ${v}`).join(' · ')}</p>
-                    </div>
+                    <div><span style={{ color: 'var(--color-text-muted)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase' }}>UPI Ref</span><p style={{ marginTop: 2 }}>{order.upi_ref}</p></div>
                   )}
                 </div>
 
@@ -246,13 +225,9 @@ export default function AdminOrdersPage() {
                           background: '#2e7d32', color: '#fff', border: 'none',
                           borderRadius: 10, padding: '9px 18px',
                           fontSize: 12, fontWeight: 700, cursor: 'pointer',
-                          transition: 'background 0.2s',
                         }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = '#1b5e20'}
-                        onMouseLeave={(e) => e.currentTarget.style.background = '#2e7d32'}
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Confirm Payment
+                        ✓ Confirm Payment
                       </button>
                       <button
                         onClick={() => updatePayment(order.id, 'rejected')}
@@ -261,29 +236,21 @@ export default function AdminOrdersPage() {
                           background: '#c62828', color: '#fff', border: 'none',
                           borderRadius: 10, padding: '9px 18px',
                           fontSize: 12, fontWeight: 700, cursor: 'pointer',
-                          transition: 'background 0.2s',
                         }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = '#b71c1c'}
-                        onMouseLeave={(e) => e.currentTarget.style.background = '#c62828'}
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                        Reject
+                        ✕ Reject
                       </button>
                     </>
                   )}
 
-                  {/* Order status selector */}
                   <div style={{ position: 'relative', marginLeft: 'auto' }}>
                     <select
                       value={order.order_status}
                       onChange={(e) => updateOrderStatus(order.id, e.target.value)}
                       style={{
-                        appearance: 'none',
-                        fontSize: 12, fontWeight: 700,
-                        padding: '9px 38px 9px 16px',
-                        borderRadius: 10, border: 'none',
-                        cursor: 'pointer',
-                        background: orderSt.bg, color: orderSt.color,
+                        appearance: 'none', fontSize: 12, fontWeight: 700,
+                        padding: '9px 38px 9px 16px', borderRadius: 10, border: 'none',
+                        cursor: 'pointer', background: orderSt.bg, color: orderSt.color,
                       }}
                     >
                       {orderStatuses.map((s) => (
@@ -292,9 +259,6 @@ export default function AdminOrdersPage() {
                         </option>
                       ))}
                     </select>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={orderSt.color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                      <polyline points="6 9 12 15 18 9"/>
-                    </svg>
                   </div>
                 </div>
               </div>

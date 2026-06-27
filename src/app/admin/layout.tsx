@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Cake, ShoppingBag, LogOut, Menu, X, Moon, Sun } from 'lucide-react'
+import { LayoutDashboard, Cake, ShoppingBag, LogOut, Menu, X, Moon, Sun, Settings} from 'lucide-react'
 import { useState } from 'react'
 import { useTheme } from '@/components/ThemeProvider'
 
@@ -9,6 +9,7 @@ const navItems = [
   { href: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/admin/cakes', icon: Cake, label: 'Cakes' },
   { href: '/admin/orders', icon: ShoppingBag, label: 'Orders' },
+  { href: '/admin/settings', icon: Settings, label: 'Settings' },
 ]
 
 function Sidebar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {

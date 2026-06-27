@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ShoppingCart, Menu, X, Moon, Sun } from 'lucide-react'
 import { useCart } from '@/lib/cartStore'
@@ -10,6 +10,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const totalItems = useCart((s) => s.totalItems())
   const { theme, toggle } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, []) 
 
   const links = [
     { href: '/', label: 'Home' },
@@ -80,7 +82,7 @@ export default function Navbar() {
 
           <Link href="/cart" className="relative p-2.5 sm:p-3 mr-1 sm:mr-2 rounded-xl transition-colors hover:bg-[var(--color-accent-light)]">
             <ShoppingCart style={{ color: 'var(--color-text-body)' }} className="w-5 h-5 sm:w-6 sm:h-6" />
-            {totalItems > 0 && (
+            {mounted && totalItems > 0 && (
               <span style={{ background: 'var(--color-accent)' }} className="absolute -top-1 -right-1 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                 {totalItems}
               </span>

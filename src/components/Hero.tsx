@@ -1,34 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const slides = [
-  {
-    tag: "NEW LAUNCH",
-    headline: "Celebrate Every\nMoment Sweetly",
-    sub: "Fresh, handcrafted cakes delivered to your door — same day, across Nagpur.",
-    bg: "linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent-very-light) 40%, var(--color-accent-light) 100%)",
-    emoji: "🎂",
-    cta: "Order Now",
-    ctaHref: "#bestsellers",
-  },
-  {
-    tag: "CUSTOM ORDERS",
-    headline: "Your Dream Cake,\nBuilt by Us",
-    sub: "Tell us your vision — flavour, size, message. We make it happen.",
-    bg: "linear-gradient(135deg, #fff0e6 0%, #ffd9b0 40%, #ffe8d6 100%)",
-    emoji: "🎁",
-    cta: "Customise Cake",
-    ctaHref: "#contact",
-  },
-];
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { supabase } from "@/lib/supabase";
 
 export default function Hero() {
+  const [heroImageUrl, setHeroImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    supabase
+      .from("site_settings")
+      .select("value")
+      .eq("key", "hero_image_url")
+      .single()
+      .then(({ data }) => {
+        if (data?.value) setHeroImageUrl(data.value);
+      });
+  }, []);
+
   return (
     <section
       id="home"
       style={{
-        background: slides[0].bg,
+        background:
+          "linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent-very-light) 40%, var(--color-accent-light) 100%)",
         minHeight: "88vh",
         display: "flex",
         alignItems: "center",
@@ -48,7 +44,11 @@ export default function Hero() {
         background: "rgba(200,137,60,0.06)", pointerEvents: "none",
       }} />
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "60px 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center", width: "100%" }}>
+      <div style={{
+        maxWidth: 1200, margin: "0 auto", padding: "60px 20px",
+        display: "grid", gridTemplateColumns: "1fr 1fr",
+        gap: 60, alignItems: "center", width: "100%",
+      }}>
         {/* Text */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -81,7 +81,10 @@ export default function Hero() {
             {"Celebrate Every\nMoment Sweetly"}
           </h1>
 
-          <p style={{ fontSize: 16, color: "var(--color-text-body)", lineHeight: 1.7, marginBottom: 32, maxWidth: 420 }}>
+          <p style={{
+            fontSize: 16, color: "var(--color-text-body)",
+            lineHeight: 1.7, marginBottom: 32, maxWidth: 420,
+          }}>
             Fresh, handcrafted cakes delivered to your door — same day, across Nagpur. Eggless options available.
           </p>
 
@@ -158,7 +161,6 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{ display: "flex", justifyContent: "center", position: "relative" }}
         >
-          {/* Main cake visual */}
           <div style={{
             width: 340,
             height: 340,
@@ -169,8 +171,19 @@ export default function Hero() {
             justifyContent: "center",
             boxShadow: "0 30px 80px rgba(var(--color-accent-rgb), 0.2), 0 10px 30px rgba(0,0,0,0.08)",
             position: "relative",
+            overflow: "hidden",
           }}>
-            <span style={{ fontSize: 120 }}>🎂</span>
+            {heroImageUrl ? (
+              <Image
+                src={heroImageUrl}
+                alt="Featured Cake"
+                fill
+                unoptimized
+                style={{ objectFit: "cover", borderRadius: "50%" }}
+              />
+            ) : (
+              <span style={{ fontSize: 120 }}>🎂</span>
+            )}
           </div>
 
           {/* Floating badges */}
